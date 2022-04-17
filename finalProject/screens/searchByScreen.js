@@ -27,12 +27,14 @@ class SearchByScreen extends React.Component {
     this.searchBy = this.props.route.params;
   }
 
+  // gọi tới API tìm kiếm
   getResultBySearch = async (text) => {
     const results = await search(this.searchBy.searchBy, text);
     this.setState({ results: results, isSearching: false });
     // console.log(this.state.results);
   };
 
+  // Xử lý khi text thay đổi
   handleSearch = (text) => {
     if (text) {
       this.setState({ text }, () => this.getResultBySearch(text));
@@ -45,6 +47,7 @@ class SearchByScreen extends React.Component {
     };
   }
 
+  // Chuyển màn
   nextNav = async (item) => {
     if (this.searchBy.searchBy === "track") {
       let results = await trackInfo(item.id);
@@ -63,6 +66,7 @@ class SearchByScreen extends React.Component {
     }
   };
 
+  // render từng dòng trong danh sách api trả về
   renderItem = (results) => {
     const { item } = results;
 

@@ -22,6 +22,7 @@ const processArtist = (album) => ({});
 
 const url = "https://api.deezer.com/";
 
+// api tìm kiếm, có thể tìm theo tên bài hát, tên album hoặc tên nghệ sĩ
 export const search = async (field, query) => {
   try {
     const response = await fetch(`${url}search/${field}?q=${query}`);
@@ -38,6 +39,7 @@ export const search = async (field, query) => {
   }
 };
 
+// api lấy thông tin chi tiết 1 bài hát
 export const trackInfo = async (id) => {
   try {
     const response = await fetch(`${url}track/${id}`);
@@ -49,6 +51,7 @@ export const trackInfo = async (id) => {
   }
 };
 
+// api lấy thông tin chi tiết 1 album
 export const albumInfo = async (id) => {
   try {
     const response = await fetch(`${url}album/${id}`);

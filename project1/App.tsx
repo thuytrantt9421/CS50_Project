@@ -31,18 +31,16 @@ export default class App extends React.Component<any, any> {
     this.min = 0;
   }
 
-  componentDidMount() {
-    this.timer();
-  }
-
   componentDidUpdate() {
     this.update();
   }
 
+  // Xóa interval
   componentWillUnmount() {
     clearInterval(this.interval);
   }
 
+  // Bộ đếm giờ, sau mỗi giây timeFor trừ đi 1
   timer = () => {
     this.interval = setInterval(() => {
       this.setState({
@@ -52,6 +50,7 @@ export default class App extends React.Component<any, any> {
     }, 1000);
   };
 
+  // Thay đổi trạng thái từ nghỉ => làm hoặc từ làm => nghỉ và đặt lại bộ đếm giờ
   update = () => {
     if (this.state.timeFor < 0) {
       vibrate();
@@ -73,6 +72,7 @@ export default class App extends React.Component<any, any> {
     }
   };
 
+  // Đếm lại từ đầu
   reset = () => {
     clearInterval(this.interval);
     this.state.title === "Work Time"
@@ -86,11 +86,13 @@ export default class App extends React.Component<any, any> {
         });
   };
 
+  // Dừng đếm
   pause = () => {
     this.setState({ counting: false });
     clearInterval(this.interval);
   };
 
+  // Quản lý ô nhập giờ làm việc
   workUserInput = (time: string, unitType: string) => {
     clearInterval(this.interval);
     unitType === "min"
@@ -104,6 +106,7 @@ export default class App extends React.Component<any, any> {
       : this.setState({ counting: false });
   };
 
+  // Quản lý ô nhập giờ nghỉ
   breakUserInput = (time: string, unitType: string) => {
     clearInterval(this.interval);
     unitType === "min"

@@ -11,6 +11,7 @@ const uncheckedCountSpan = document.getElementById("unchecked-count");
 
 let listTodo = [];
 
+// Thêm 1 todo, người dùng nhập nội dung công việc, công việc sẽ được xếp ở cuối danh sách
 function newTodo() {
   const text = prompt("Nhập nội dung công việc: ");
   const newTodo = {
@@ -24,11 +25,13 @@ function newTodo() {
   return render();
 }
 
+// Xóa 1 todo trong danh sách
 function deleteTodo(id) {
-  listTodo = listTodo.filter(todo => todo.id !== id);
+  listTodo = listTodo.filter((todo) => todo.id !== id);
   return render();
 }
 
+// render danh sách todo
 function render() {
   list.innerHTML = "";
   listTodo.map(renderListTodo).forEach((todo) => list.appendChild(todo));
@@ -41,7 +44,8 @@ function render() {
   return false;
 }
 
-function renderListTodo(todo) {
+//render 1 dòng todo
+function renderTodo(todo) {
   const liElement = document.createElement("li");
   liElement.classList.add(classNames.TODO_ITEM);
   let todocompleted = "";
@@ -52,15 +56,21 @@ function renderListTodo(todo) {
 
   liElement.innerHTML =
     `
-    <input type="checkbox" class="` + classNames.TODO_CHECKBOX + `" onChange="toggle(` +
+    <input type="checkbox" class="` +
+    classNames.TODO_CHECKBOX +
+    `" onChange="toggle(` +
     todo.id +
     `)" ` +
     todocompleted +
     `>
-    <button class="` + classNames.TODO_DELETE + `" onClick="deleteTodo(` +
+    <button class="` +
+    classNames.TODO_DELETE +
+    `" onClick="deleteTodo(` +
     todo.id +
     `)">delete</button>
-    <span class="` + classNames.TODO_TEXT + `">` +
+    <span class="` +
+    classNames.TODO_TEXT +
+    `">` +
     todo.content +
     `</span>  
     `;
@@ -68,6 +78,7 @@ function renderListTodo(todo) {
   return liElement;
 }
 
+// Chỉnh sửa trạng thái công việc
 function toggle(id) {
   let toggle = listTodo.filter((toto) => toto.id === id)[0];
   toggle.completed = !toggle.completed;

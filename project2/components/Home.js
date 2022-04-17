@@ -31,15 +31,18 @@ export default class Home extends React.Component {
     },
   };
 
+  // Gọi tới api tìm kiếm phim theo tên
   getMovies = async (text) => {
     const results = await searchMovieByName(text);
     this.setState({ movies: results, isSearching: false });
   };
 
+  // Xử lý khi nôi dung ô text thay đổi, đặt lại trạng thái text và tìm nạp danh sách phim mới
   handleSearch = (text) => {
-    this.setState({text}, () => this.getMovies(text))
-  }
+    this.setState({ text }, () => this.getMovies(text));
+  };
 
+  // render từng dòng thông tin 1 bộ phim trong danh sách api trả về, khi ấn vào 1 dòng, sẽ chuyển sang màn Movie
   renderItem = (movie) => {
     const { item } = movie;
     return (

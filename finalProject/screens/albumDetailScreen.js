@@ -1,3 +1,4 @@
+// Màn chi tiết album
 import React from "react";
 import {
   Image,
@@ -102,6 +103,7 @@ class AlbumDetailScreen extends React.Component {
   }
 }
 
+// Lấy thông tin album được lưu trong store
 const mapStateToProps = (state) => ({
   album: state.album,
 });

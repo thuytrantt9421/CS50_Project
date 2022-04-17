@@ -15,6 +15,7 @@ import { NavigationContainer } from "@react-navigation/native";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+// Stack ở tab tìm kiếm, gồm màn chọn cách tìm kiếm, màn tìm kiếm và màn chi tiết album
 function SearchStack() {
   return (
     <Stack.Navigator

@@ -6,6 +6,7 @@ const processMovie = (movie) => ({
   imdbID: movie.imdbID,
 });
 
+// api tìm kiếm phim theo tên, trả lại 1 danh sách phim chứa từ khóa tương ứng
 export const searchMovieByName = async (query) => {
   const url = `http://www.omdbapi.com/?apikey=812cedba&s=${query}`;
   try {
@@ -25,6 +26,7 @@ export const searchMovieByName = async (query) => {
   }
 };
 
+//api tìm kiếm phim theo id, trả lại thông tin chi tiết của 1 bộ phim
 export const searchMovieById = async (id) => {
   const url = `http://www.omdbapi.com/?apikey=812cedba&i=${id}`;
   try {

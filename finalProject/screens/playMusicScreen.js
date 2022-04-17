@@ -1,3 +1,4 @@
+// Màn phát nhạc
 import React, { useEffect, useRef, useState } from "react";
 import { Text, View, Image, TouchableOpacity, Animated } from "react-native";
 import Slider from "@react-native-community/slider";
@@ -42,6 +43,7 @@ class PlayMusicScreen extends React.Component {
   //   //this.setState({})
   // }
 
+  // phát hiện thay đổi và đặt lại trạng thái 
   UNSAFE_componentWillReceiveProps(nextProps) {
     // This will erase any local state updates!
     // Do not do this.
@@ -64,12 +66,14 @@ class PlayMusicScreen extends React.Component {
     }
   }
 
+  // Chuyển về bài hát trước trong danh sách
   skipToPrevious = () => {
     if (this.state.index > 0) {
       this.setState((prevState) => ({ index: prevState.index - 1 }));
     }
   };
 
+  // Chuyển tới bài hát tiếp theo trong danh sách
   skipToNext = () => {
     if (this.state.index < this.state.data.length) {
       this.setState((prevState) => ({ index: prevState.index + 1 }));
@@ -206,6 +210,7 @@ class PlayMusicScreen extends React.Component {
   }
 }
 
+// Lấy thông tin cần thiết từ store
 const mapStateToProps = (state) => ({
   track: state.track,
   album: state.album,

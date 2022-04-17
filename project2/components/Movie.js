@@ -33,6 +33,7 @@ export default class Movie extends React.Component {
     this.getMovieDetails(this.props.navigation.getParam("id", "n/a"));
   }
 
+  // Lấy thông tin chi tiết 1 bộ phim
   getMovieDetails = async (id) => {
     const results = await searchMovieById(id);
     this.setState({ info: results });
