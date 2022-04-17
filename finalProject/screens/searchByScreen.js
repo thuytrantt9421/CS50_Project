@@ -12,7 +12,11 @@ import styles from "../styles/styles";
 
 import { search, albumInfo, trackInfo } from "../api/api";
 
-export default class SearchByScreen extends React.Component {
+import { connect } from "react-redux";
+
+import { getTrack, getAlbum } from "../redux/action";
+
+class SearchByScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,13 +30,8 @@ export default class SearchByScreen extends React.Component {
   getResultBySearch = async (text) => {
     const results = await search(this.searchBy.searchBy, text);
     this.setState({ results: results, isSearching: false });
-    console.log(this.state.results);
+    // console.log(this.state.results);
   };
-
-  // getAlbumInfo = async (id) => {
-  //   const results = await albumInfo(id);
-  //   return results
-  // }
 
   handleSearch = (text) => {
     if (text) {
@@ -49,21 +48,18 @@ export default class SearchByScreen extends React.Component {
   nextNav = async (item) => {
     if (this.searchBy.searchBy === "track") {
       let results = await trackInfo(item.id);
-      console.log(results);
-      this.props.navigation.navigate("Phát", {
-        data: [results],
-        img: results.album.cover
-      });
+      // console.log(results);
+      this.props.getTrack(results);
+      this.props.navigation.navigate("Phát");
     } else if (this.searchBy.searchBy === "album") {
       let results = await albumInfo(item.id);
-      console.log(results);
-      this.props.navigation.navigate("albumDetail", {
-        item: results,
-      });
-    } else {
-      this.props.navigation.navigate("Phát", {
-        id: item.id,
-      });
+      // console.log(results);
+      this.props.getAlbum(results)
+      this.props.navigation.navigate("albumDetail");
+    } else if (this.searchBy.searchBy === "album") {
+      // this.props.navigation.navigate("Phát", {
+      //   id: item.id,
+      // });
     }
   };
 
@@ -150,3 +146,5 @@ export default class SearchByScreen extends React.Component {
     );
   }
 }
+
+export default connect(null, {getTrack: getTrack, getAlbum: getAlbum})(SearchByScreen)

@@ -1,9 +1,12 @@
 import React from "react";
 import { Text, View, TouchableHighlight } from "react-native";
+import { connect } from "react-redux";
 
 import styles from "../styles/styles";
 
-export default class SearchScreen extends React.Component {
+import { getType } from "../redux/action";
+
+class SearchScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,6 +26,7 @@ export default class SearchScreen extends React.Component {
             this.props.navigation.navigate("searchBy", {
               searchBy: "track",
             });
+            this.props.getType("playTrack")
           }}
         >
           <Text category="h4" style={{ color: "#fff" }}>
@@ -35,6 +39,7 @@ export default class SearchScreen extends React.Component {
             this.props.navigation.navigate("searchBy", {
               searchBy: "album",
             });
+            this.props.getType("playAlbum")
           }}
         >
           <Text category="h4" style={{ color: "#fff" }}>
@@ -57,3 +62,5 @@ export default class SearchScreen extends React.Component {
     );
   }
 }
+
+export default connect(null, {getType: getType})(SearchScreen)

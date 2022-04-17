@@ -3,16 +3,13 @@ import { StyleSheet, Text, View } from "react-native";
 
 import ApplicationTabs from "./navigation/navigators";
 import styles from "./styles/styles";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 export default function App() {
-  return <ApplicationTabs />;
+  return (
+    <Provider store={store}>
+      <ApplicationTabs />
+    </Provider>
+  );
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#fff",
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
-// });
