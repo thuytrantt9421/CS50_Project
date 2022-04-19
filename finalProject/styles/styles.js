@@ -125,8 +125,12 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderRadius: 3,
     width: width,
-    height: 50,
+    height: 40,
     borderColor: "grey",
+    flexDirection: "row",
+    paddingLeft: 20,
+    justifyContent: "space-between",
+    alignItems: "center",
     // paddingTop: 10,
     // paddingBottom: 10,
     // paddingLeft: 15,
@@ -185,9 +189,10 @@ export default StyleSheet.create({
   },
   details_touchable: {
     backgroundColor: "lightgrey",
-    // width: width,
   },
   details_flatlist: {
-    marginTop: 100
-  }
+    marginTop: 100,
+  },
+  search_button: {},
+  search_input: {},
 });

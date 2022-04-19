@@ -21,14 +21,10 @@ import { connect } from "react-redux";
 class AlbumDetailScreen extends React.Component {
   constructor(props) {
     super(props);
-    // const temp = this.props.route.params;
-    // this.state = {
-    //   info: this.props.album,
-    // };
-    // console.log(this.props.album.tracks.data);
     console.log(this.props.album);
   }
 
+  // render danh sách bài hát trong album
   renderItem = (results) => {
     const { item } = results;
 
@@ -83,8 +79,7 @@ class AlbumDetailScreen extends React.Component {
           <TouchableOpacity
             onPress={() => {
               this.props.navigation.navigate("Phát", {
-                data: this.props.album.tracks.data,
-                img: this.props.album.cover_xl,
+                navToPlay: true,
               });
             }}
           >
@@ -96,7 +91,7 @@ class AlbumDetailScreen extends React.Component {
           style={styles.flatlist}
           data={this.props.album.tracks.data}
           renderItem={this.renderItem}
-          keyExtractor={(item) => item.id + Math.floor(Math.random() * 1000)}
+          keyExtractor={(item) => item.id + Math.floor(Math.random() * 100000)}
         ></FlatList>
       </View>
     );
